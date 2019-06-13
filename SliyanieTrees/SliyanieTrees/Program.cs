@@ -84,9 +84,37 @@ namespace SliyanieTrees
                 return new Tree(x);
             }
         }
+        static void ShowTree(Tree p, int l)
+        {
+            if (p != null)
+            {
+                ShowTree(p.left, l + 3);//переход к левому поддереву
+                for (int i = 0; i < l; i++) Console.Write(" ");
+                Color.Print(Convert.ToString(p.data) + "\n", ConsoleColor.Yellow);
+                ShowTree(p.right, l + 3);//переход к правому поддереву
+            }
+        }
+        public static void Rezult()
+        {
+            Console.Clear();
+            Color.Print("\nДерево 1:\n\n", ConsoleColor.Green);
+            ShowTree(idTree1, 6);
+            Color.Print("\nДерево 2:\n\n", ConsoleColor.Green);
+            ShowTree(idTree2, 6);
+            i = 0;
+            idTree = IdealTree(size1 + size2, idTree);
+            Color.Print("\nИтог:\n\n", ConsoleColor.Green);
+            ShowTree(idTree, 6);
+        }
         static void Main()
         {
-
+            Create();
+            Color.Print("\nДерево 1: ", ConsoleColor.Green);
+            idTree1 = IdealTree(size1, idTree1, HowCreate);
+            Color.Print("\nДерево 2: ", ConsoleColor.Green);
+            idTree2 = IdealTree(size2, idTree2, HowCreate);
+            Rezult();
+            Text.GoBackMenu();
         }
     }
 }
